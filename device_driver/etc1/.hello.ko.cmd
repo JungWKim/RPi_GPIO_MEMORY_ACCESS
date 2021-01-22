@@ -1,0 +1,1 @@
+cmd_/home/pi/examples/device_driver/etc1/hello.ko := ld -r  -EL  --build-id  -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds -o /home/pi/examples/device_driver/etc1/hello.ko /home/pi/examples/device_driver/etc1/hello.o /home/pi/examples/device_driver/etc1/hello.mod.o;  true
