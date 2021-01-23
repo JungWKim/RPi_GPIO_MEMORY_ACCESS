@@ -10,6 +10,7 @@
 #define GPCLR0 0x28
 #define MAJOR_NUM 63
 
+//ioremap의 데이터반환타입은 void __iomem*이므로 주의 해야함. 그렇지 않으면 시스템 다운됨
 static void __iomem *gpio_base;
 volatile unsigned int* gpfsel1;
 volatile unsigned int* gpset0;

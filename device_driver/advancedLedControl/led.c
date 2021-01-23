@@ -13,9 +13,9 @@
 
 #define SETMODE_GPIO18_OUT (1<<24)
 #define SET_GPIO18         (1<<18)
-#define CLEAR_GPIO18       (0<<18)
+#define CLEAR_GPIO18       (1<<18)
 
-volatile unsigned int* gpioBase;
+static void __iomem *gpioBase;
 volatile unsigned int* gpfsel1;
 volatile unsigned int* gpset0;
 volatile unsigned int* gpclr0;
@@ -73,7 +73,8 @@ long device_ioctl(struct file *filp, unsigned int cmd, unsigned long addr)
                 led_state = 1;
                 printk("turn on led\n");
                 break;
-        case 2: *gpclr0 |= CLEAR_GPIO18;
+        case 2: 
+                *gpclr0 |= CLEAR_GPIO18;
                 led_state = 0;
                 printk("turn off led\n");
                 break;
@@ -81,13 +82,14 @@ long device_ioctl(struct file *filp, unsigned int cmd, unsigned long addr)
                 {
                     *gpclr0 |= CLEAR_GPIO18;
                     printk("turn off led\n");
+                    led_state = 0;
                 }
                 else
                 {
                     *gpset0 |= SET_GPIO18;
                     printk("turn on led\n");
+                    led_state = 1;
                 }
-                led_state = ~led_state;
                 break;
     }
     return value;

@@ -13,7 +13,7 @@ int main(void)
         exit(-1);
     }
 
-    int input;
+    unsigned int input;
     int led_state;
     char buffer;
     while(1)
@@ -22,22 +22,24 @@ int main(void)
         scanf("%d", &input);
         switch(input)
         {
-            case 1: ioctl(fd, input);
-                    led_state = read(fd, &buffer, sizeof(buffer));
-                    printf("Led State : %d\n", led_state);
-                    break;
-            case 2: ioctl(fd, input);
-                    led_state = read(fd, &buffer, sizeof(buffer));
-                    printf("Led State : %d\n", led_state);
-                    break;
-            case 3: ioctl(fd, input);
-                    led_state = read(fd, &buffer, sizeof(buffer));
-                    printf("Led State : %d\n", led_state);
-                    break;
-            case 4: close(fd);
-                    printf("program exited\n");
-                    return 0;
+            case 1:
+                ioctl(fd, 1);
+                break;
+            case 2:
+                buffer = 0;
+                write(fd, &buffer, sizeof(buffer));
+                break;
+            case 3:
+                ioctl(fd, 3);
+                break;
+            case 4:
+                close(fd);
+                printf("program exited\n");
+                return 0;
         }
+        led_state = read(fd, &buffer, sizeof(buffer));
+        printf("Led State : %d\n", led_state);
+        printf("input : %d\n", input);
     }
     return 0;
 }
