@@ -35,6 +35,8 @@ int main()
 
     //char*로 형변환하면 1바이트씩 접근해서 읽고 쓰겠다는 의미
     char* gpio_memory_map = (char *)mmap(0, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
+    //int *p = &fd;
+    //printf("gpio base address : %p", p);
     if(gpio_memory_map == MAP_FAILED)
     {
         perror("[error] mmap");
@@ -44,8 +46,9 @@ int main()
     //int*로 형변환하면 4바이트씩 접근해서 읽고 쓰겠다는 의미
     volatile unsigned int* gpio = (volatile unsigned int*)gpio_memory_map;
     gpio[GPFSEL1/4] |= (1<<24);
+    //printf("gpio gpfsel1 address : %p", &gpio[GPFSEL1/4]);
 
-    for(int i = 0; i < 5;i++)
+    for(int i = 0; i < 3; i++)
     {
         gpio[GPSET0/4] |= (1<<18);
         sleep(1);

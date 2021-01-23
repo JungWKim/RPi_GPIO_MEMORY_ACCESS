@@ -1,18 +1,19 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include <linux/init.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("BUTTER SHOWER");
 MODULE_DESCRIPTION("module programming - hello module");
 
 //__init or __initdata(used with data) : 함수나 변수가 운영체제 초기화 과정에만 사용된 후 바로 메모리에서 해제됨 >> 메모리 여유공간 증가
-static int module_begin(void) {
+static int __init module_begin(void) {
     printk("hello, linux kernel module\n");
     return 0;
 }
 
 //드라이버 사용이 종료될때각가의종료함수를 부맂 않아도 알아서 메모리에서 제거시킴??
-static void module_end(void) {
+static void __exit module_end(void) {
     printk("good bye!\n");
 }
 

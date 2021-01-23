@@ -1,0 +1,1 @@
+cmd_/home/pi/examples/device_driver/advancedLedControl/led.ko := ld -r  -EL  --build-id  -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds -o /home/pi/examples/device_driver/advancedLedControl/led.ko /home/pi/examples/device_driver/advancedLedControl/led.o /home/pi/examples/device_driver/advancedLedControl/led.mod.o;  true

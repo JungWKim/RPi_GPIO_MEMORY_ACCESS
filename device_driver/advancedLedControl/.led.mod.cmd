@@ -1,0 +1,1 @@
+cmd_/home/pi/examples/device_driver/advancedLedControl/led.mod := { echo  /home/pi/examples/device_driver/advancedLedControl/led.o; echo; } > /home/pi/examples/device_driver/advancedLedControl/led.mod
