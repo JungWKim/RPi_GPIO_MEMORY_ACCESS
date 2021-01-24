@@ -58,6 +58,6 @@ int main()
     }
 
     munmap(gpio_memory_map, 4096);
-    fclose((void *)fd);
+    close(fd);
     return 0;
 }
