@@ -29,6 +29,7 @@ ssize_t device_write()
 
 }
 
+// 구조체 안에 작성순서도 규칙이 있기 때문에 순서에 
 static struct file_operations device_fops = {
     .open=device_open,
     .release=device_release,
