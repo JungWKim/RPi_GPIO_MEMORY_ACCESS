@@ -23,6 +23,7 @@ int main(void)
         exit(-1);
     }
 
+    //메모리장치파일에 가상메모리를 할당하는 작업
     char* gpio_memory_map = (char *)mmap(0, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
     if(gpio_memory_map == MAP_FAILED)
     {
