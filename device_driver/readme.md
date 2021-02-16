@@ -1,6 +1,6 @@
 < how to use >
 
-1. sudo mknode /dev/led c [major number]
+1. sudo mknod /dev/led c [major number] [minor number]
 
 2. sudo insmod(or modprobe) led.ko(this can be changed depending on its location)
 
