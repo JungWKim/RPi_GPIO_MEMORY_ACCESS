@@ -18,7 +18,7 @@
 //#define GPIO_BASE 0x3F200000
 //#define GPIO_BASE 0x7e200000
 //
-//gpio 가상메모리 베이스주소
+//gpio 베이스주소
 #define GPIO_BASE 0xfe200000
 #define GPFSEL1 0x04
 #define GPSET0 0x1C
