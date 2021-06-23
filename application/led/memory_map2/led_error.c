@@ -1,6 +1,6 @@
 /*
  * project name : led blinking
- * pin number : gpio 18
+ * pin number : gpio 4
  *
  *
  *
@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <sys/mman.h>
 
-#define GPIO_BASE 0xfe200000
+#define GPIO_BASE 0x7e200000
 #define GPFSEL0 0x00
 #define GPSET0 0x1c
 #define GPCLR0 0x28
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 
     //메모리장치파일에 가상메모리를 할당하는 작업
     //mmap은 가상메모리주소를 반환, 유저영역에선 물리주소를 알아도 가상주소로 변환해야지만 
-    char* gpio_base_addr = (char*)mmap(0, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
+    char* gpio_base_addr = (char *)mmap(0, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, fd, GPIO_BASE);
     if(gpio_base_addr == MAP_FAILED)
     {
         perror("[Error] mmap() : ");
@@ -40,11 +40,9 @@ int main(int argc, char **argv)
     volatile unsigned int *gpclr0;
 
     gpio_virtual_addr = (volatile unsigned int*)gpio_base_addr;
-    gpfsel0 = gpio_virtual_addr + (GPFSEL0/4);
-    gpset0 = gpio_virtual_addr + (GPSET0/4);
-    gpclr0 = gpio_virtual_addr + (GPCLR0/4);
-    *gpfsel0 |= (0<<14);
-    *gpfsel0 |= (0<<13);
+    gpfsel0 = gpio_virtual_addr + GPFSEL0;
+    gpset0 = gpio_virtual_addr + GPSET0;
+    gpclr0 = gpio_virtual_addr + GPCLR0;
     *gpfsel0 |= (1<<12);
 
     for(int i=0; i<3; i++)
